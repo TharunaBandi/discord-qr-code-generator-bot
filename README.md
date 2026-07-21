@@ -1,1 +1,1 @@
-# Discord-bot-QR-code-generator
+# Discord QR Code Generator Bot
