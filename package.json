@@ -9,22 +9,23 @@
     "devStart": "nodemon index.js"
   },
   "repository": {
-  "type": "git",
-  "url": "git+https://github.com/TharunaBandi/discord-qr-bot.git"
+    "type": "git",
+    "url": "git+https://github.com/TharunaBandi/discord-qr-bot.git"
   },
   "keywords": [],
   "author": "Tharuna Bandi",
   "license": "ISC",
   "bugs": {
-  "url": "https://github.com/TharunaBandi/discord-qr-bot/issues"
-},
+    "url": "https://github.com/TharunaBandi/discord-qr-bot/issues"
+  },
   "homepage": "https://github.com/TharunaBandi/discord-qr-bot#readme",
   "dependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
     "discord-api-types": "^0.24.0",
     "discord.js": "^13.3.1",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "qrcode": "^1.5.4"
   },
   "devDependencies": {
     "mocha": "^9.1.3",

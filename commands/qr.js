@@ -1,21 +1,49 @@
-const googleAPI = require('./../externalAPIs/googleQR');
+const qrGenerator = require('../utils/qrGenerator');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { MessageAttachment } = require('discord.js');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('qr')
-        .setDescription('Generates QR code for the url provided')
-        .addStringOption(option => option.setName('url').setDescription('url to be encoded'))
-        .addStringOption(option => option.setName('height').setDescription('height of QR in pixels'))
-        .addStringOption(option => option.setName('width').setDescription('width of QR in pixels'))
-        .addStringOption(option => option.setName('color').setDescription('color of QR'))
-        ,
-    async execute(interaction){
-        const url = interaction.options.getString('url');
-        const height = interaction.options.getString('height');
-        const width = interaction.options.getString('width');
-        const color = interaction.options.getString('color');
+        .setDescription('Generate a QR Code')
+        .addStringOption(option =>
+            option
+                .setName('url')
+                .setDescription('URL to encode')
+                .setRequired(true))
+        .addIntegerOption(option =>
+            option
+                .setName('size')
+                .setDescription('QR Code Size in pixels')),
 
-        await interaction.reply(googleAPI.generateQR(url, height, width, color));
+    async execute(interaction) {
+
+        const url = interaction.options.getString('url');
+        const size = interaction.options.getInteger('size') || 200;
+
+        try {
+
+            const qrBuffer = await qrGenerator.generateQR(url, size);
+
+            const attachment = new MessageAttachment(
+                qrBuffer,
+                'qrcode.png'
+            );
+
+            await interaction.reply({
+                files: [attachment]
+            });
+
+        } catch (err) {
+
+            console.error(err);
+
+            await interaction.reply({
+                content: 'Failed to generate QR Code.',
+                ephemeral: true
+            });
+
+        }
+
     }
 };
