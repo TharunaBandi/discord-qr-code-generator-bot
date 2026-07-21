@@ -1,7 +1,7 @@
 {
   "name": "discord-bot",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Discord bot that generates customizable QR codes using slash commands and the Google Chart API.",
   "main": "index.js",
   "scripts": {
     "test": "mocha ./tests/googleQR.test.js",
@@ -9,16 +9,16 @@
     "devStart": "nodemon index.js"
   },
   "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lawalbolaji/Discord-bot-QR-code-generator.git"
+  "type": "git",
+  "url": "git+https://github.com/TharunaBandi/discord-qr-bot.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Tharuna Bandi",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lawalbolaji/Discord-bot-QR-code-generator/issues"
-  },
-  "homepage": "https://github.com/lawalbolaji/Discord-bot-QR-code-generator#readme",
+  "url": "https://github.com/TharunaBandi/discord-qr-bot/issues"
+},
+  "homepage": "https://github.com/TharunaBandi/discord-qr-bot#readme",
   "dependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
