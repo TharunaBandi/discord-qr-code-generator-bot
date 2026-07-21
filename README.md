@@ -190,4 +190,4 @@ Discord Channel
 **Tharuna Bandi**
 
 - GitHub: https://github.com/TharunaBandi
-- Email: banditharuna@gmail.com
+- Email: tharunasri15@gmail.com
