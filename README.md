@@ -1,50 +1,48 @@
 # Discord QR Code Generator Bot
 
-A Node.js Discord bot that generates customizable QR codes from user-provided URLs using Discord slash commands and the Google Chart API. The project demonstrates modular application design, REST API integration, environment variable management, and asynchronous programming with Node.js.
+A Discord bot built with **Node.js** and **Discord.js** that generates QR code images from user-provided URLs using Discord slash commands. The bot generates QR codes locally using the **qrcode** npm package and sends them directly as image attachments in Discord.
 
 ---
 
 ## Features
 
-- Generate QR codes directly from Discord using slash commands
-- Customize QR code dimensions (height and width)
-- Customize QR code color
-- Modular command-based architecture
-- External API integration using the Google Chart API
-- Environment variable configuration with dotenv
+- Generate QR codes for any valid URL
+- Supports Discord Slash Commands (`/qr` and `/ping`)
+- Generates QR codes locally using the `qrcode` npm package
+- Customizable QR code image size
+- Modular project architecture
+- Environment variable management with `dotenv`
 
 ---
 
-## Technologies Used
+## Tech Stack
 
-- Node.js
-- JavaScript (ES6)
-- Discord.js
-- Discord Slash Commands
-- Google Chart API
-- dotenv
-- npm
-- Git & GitHub
+- **Runtime:** Node.js
+- **Language:** JavaScript
+- **Framework:** Discord.js
+- **QR Code Generation:** qrcode (npm package)
+- **Configuration:** dotenv
+- **Package Manager:** npm
+- **Version Control:** Git & GitHub
 
 ---
 
 ## Project Structure
 
-```
-discord-qr-bot/
+```text
+discord-qr-code-generator-bot/
 │
 ├── commands/
 │   ├── ping.js
 │   └── qr.js
 │
-├── externalAPIs/
-│   └── googleQR.js
+├── utils/
+│   └── qrGenerator.js
 │
-├── tests/
-│
-├── deployCommands.js
 ├── index.js
+├── deployCommands.js
 ├── package.json
+├── .env
 └── README.md
 ```
 
@@ -52,116 +50,138 @@ discord-qr-bot/
 
 ## Installation
 
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/TharunaBandi/discord-qr-bot.git
+git clone https://github.com/TharunaBandi/discord-qr-code-generator-bot.git
+
+cd discord-qr-code-generator-bot
 ```
 
-Navigate to the project folder:
-
-```bash
-cd discord-qr-bot
-```
-
-Install dependencies:
+### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
----
-
-## Environment Variables
+### 3. Configure environment variables
 
 Create a `.env` file in the project root.
 
 ```env
 QR_BOT_TOKEN=YOUR_DISCORD_BOT_TOKEN
-CLIENT_ID=YOUR_CLIENT_ID
-GUILD_ID=YOUR_GUILD_ID
+CLIENT_ID=YOUR_DISCORD_APPLICATION_ID
+GUILD_ID=YOUR_DISCORD_SERVER_ID
 ```
 
----
-
-## Register Slash Commands
+### 4. Register Slash Commands
 
 ```bash
 node deployCommands.js
 ```
 
----
-
-## Run the Bot
+### 5. Start the Bot
 
 ```bash
 npm start
 ```
 
-or
-
-```bash
-npm run devStart
-```
-
 ---
 
-## Bot Commands
-
-### `/qr`
-
-Generates a QR code from a URL.
-
-Example:
-
-```
-/qr
-url=https://github.com
-height=300
-width=300
-color=FF0000
-```
-
----
+## Available Commands
 
 ### `/ping`
 
 Checks whether the bot is online.
 
-```
+**Example**
+
+```text
 /ping
 ```
 
-Response:
+**Response**
 
-```
+```text
 Pong!
 ```
 
 ---
 
-## Node.js Concepts Demonstrated
+### `/qr`
 
-- Modular Programming
-- Event-Driven Architecture
-- Asynchronous Programming (`async/await`)
-- Environment Variables (`dotenv`)
-- npm Package Management
-- REST API Integration
-- Discord Bot Development
-- Slash Command Registration
-- Error Handling
+Generates a QR code image for a given URL.
+
+#### Parameters
+
+| Parameter | Description | Required |
+|-----------|-------------|----------|
+| `url` | URL to encode into a QR code | ✅ Yes |
+| `size` | QR code image size (pixels) | ❌ Optional |
+
+#### Example
+
+```text
+/qr
+url: https://github.com
+size: 300
+```
+
+The bot responds with a PNG image containing the generated QR code.
 
 ---
 
-## Future Improvements
+## How It Works
 
-- Download QR codes as image attachments
-- Support text encoding in addition to URLs
-- Add QR code styles and themes
-- Store usage history in a database
-- Dockerize the application
-- Add unit and integration tests
+1. User enters the `/qr` slash command.
+2. Discord sends the request to the bot.
+3. The bot reads the provided URL and optional image size.
+4. The `qrcode` npm package generates a QR code image in memory.
+5. The bot sends the generated PNG image back to the Discord channel.
+
+---
+
+## Example Workflow
+
+```text
+User
+   │
+   │ /qr https://github.com
+   ▼
+Discord Bot
+   │
+   ▼
+QR Code Generator (qrcode npm package)
+   │
+   ▼
+PNG Image
+   │
+   ▼
+Discord Channel
+```
+
+---
+
+## Skills Demonstrated
+
+- Discord Bot Development
+- Discord Slash Commands
+- Event-Driven Programming
+- Asynchronous Programming (`async/await`)
+- Modular Project Architecture
+- Environment Variable Management (`dotenv`)
+- QR Code Generation
+- File Attachment Handling in Discord
+
+---
+
+## Future Enhancements
+
+- QR code color customization
+- Background color selection
+- Logo embedding inside QR codes
+- URL validation with detailed error messages
+- Download support in multiple image formats
 
 ---
 
@@ -169,4 +189,5 @@ Pong!
 
 **Tharuna Bandi**
 
-GitHub: https://github.com/TharunaBandi
+- GitHub: https://github.com/TharunaBandi
+- Email: banditharuna@gmail.com
